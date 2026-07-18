@@ -3,10 +3,13 @@ package main
 import (
 	"fmt"
 
-	"student-manager/internal/ui"
+	"github.com/EricRider/student-manager/internal/service"
 )
 
 func main() {
-	ui.ShowWelcome()
-	fmt.Println("student-manager initialized")
+
+	s := service.StudentService{}
+
+	fmt.Println(s)
+
 }
