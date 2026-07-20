@@ -2,6 +2,7 @@ package storage
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 
 	"github.com/EricRider/student-manager/internal/model"
@@ -20,10 +21,14 @@ func NewJSONStorage(fileName string) *JSONStorage {
 // Save 保存学生数据到 JSON 文件
 func (j *JSONStorage) Save(students []model.Student) error {
 
+	fmt.Println("Writing to:", j.FileName)
+
 	data, err := json.MarshalIndent(students, "", "    ")
 	if err != nil {
 		return err
 	}
+
+	fmt.Println(string(data))
 
 	return os.WriteFile(j.FileName, data, 0644)
 }

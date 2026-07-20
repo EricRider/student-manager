@@ -9,7 +9,7 @@ import (
 
 // Start 启动菜单
 func Start() {
-	studentService := service.StudentService{}
+	studentService := service.NewStudentService()
 	for {
 
 		fmt.Println("======================")
