@@ -17,6 +17,7 @@ func Start() {
 		fmt.Println("======================")
 		fmt.Println("1. Add Student")
 		fmt.Println("2. List Student")
+		fmt.Println("3. Delete Student")
 		fmt.Println("0. Exit")
 		fmt.Print("Choose: ")
 
@@ -50,15 +51,31 @@ func Start() {
 			}
 
 		case 2:
-			students := studentService.ListStudents()
+			fmt.Println("==========================================================")
+			fmt.Printf("%-8s %-15s %-8s %-25s\n", "ID", "Name", "Age", "Email")
+			fmt.Println("==========================================================")
 
-			if len(students) == 0 {
-				fmt.Println("No Students Found!")
+			for _, student := range studentService.ListStudents() {
+				fmt.Printf("%-8d %-15s %-8d %-25s\n",
+					student.ID,
+					student.Name,
+					student.Age,
+					student.Email,
+				)
+
+			}
+
+			fmt.Println("==========================================================")
+
+		case 3:
+			var id int
+			fmt.Println("Input ID:")
+			fmt.Scanln(&id)
+			err := studentService.DeleteStudent(id)
+			if err != nil {
+				fmt.Println(err)
 			} else {
-				fmt.Println("Students List:")
-				for _, student := range students {
-					fmt.Printf("ID: %d, Name: %s, Age: %d, Email: %s\n", student.ID, student.Name, student.Age, student.Email)
-				}
+				fmt.Println("Student Deleted Successfully!")
 			}
 
 		case 0:

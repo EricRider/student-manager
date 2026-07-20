@@ -1,6 +1,10 @@
 package service
 
-import "github.com/EricRider/student-manager/internal/model"
+import (
+	"errors"
+
+	"github.com/EricRider/student-manager/internal/model"
+)
 
 type StudentService struct {
 	students []model.Student
@@ -15,4 +19,18 @@ func (s *StudentService) AddStudent(student model.Student) error {
 // ListStudents 返回所有学生
 func (s *StudentService) ListStudents() []model.Student {
 	return s.students
+}
+func (s *StudentService) DeleteStudent(id int) error {
+
+	for i, student := range s.students {
+
+		if student.ID == id {
+
+			s.students = append(s.students[:i], s.students[i+1:]...)
+
+			return nil
+		}
+	}
+
+	return errors.New("student not found")
 }
