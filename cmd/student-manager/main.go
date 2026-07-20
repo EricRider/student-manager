@@ -1,15 +1,7 @@
 package main
 
-import (
-	"fmt"
-
-	"github.com/EricRider/student-manager/internal/service"
-)
+import "github.com/EricRider/student-manager/internal/ui"
 
 func main() {
-
-	s := service.StudentService{}
-
-	fmt.Println(s)
-
+	ui.Start()
 }
