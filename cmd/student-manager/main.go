@@ -1,7 +1,19 @@
 package main
 
-import "github.com/EricRider/student-manager/internal/ui"
+import (
+	"github.com/EricRider/student-manager/internal/handler"
+	"github.com/gin-gonic/gin"
+)
 
 func main() {
-	ui.Start()
+
+	r := gin.Default()
+
+	h := handler.NewStudentHandler()
+
+	r.GET("/students", h.ListStudents)
+
+	r.POST("/students", h.AddStudent)
+
+	r.Run(":8080")
 }

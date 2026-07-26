@@ -1,10 +1,10 @@
 package model
 
 type Student struct {
-	ID    int
-	Name  string
-	Age   int
-	Email string
-	Phone string
+	ID      int
+	Name    string
+	Age     int
+	Email   string
+	Phone   string
 	Address string
 }
